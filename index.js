@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
  const quesText = document.getElementById("question-text")
  const choiceList = document.getElementById("choices-list")
  const scoreDisplay = document.getElementById("score")
+ const resultContainer = document.getElementById("result-container")
+
 //  all buttons
  const nextBtn = document.getElementById("next-btn")
  const restartBtn = document.getElementById("restart-btn")
@@ -11,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
  const ques = [
 {
-    ques : "What is the capital of France?",
+    question : "What is the capital of France?",
     choices : ["Paris", "London", "Berlin", "Madrid"],
     answer: "Paris"
 },
@@ -37,7 +39,21 @@ document.addEventListener('DOMContentLoaded', function() {
  let score = 0;
 
  startBtn.addEventListener("click", startQuiz)
-
+ nextBtn.addEventListener("click",()=>{
+    currentQuesIndex++;
+    if(currentQuesIndex < ques.length){
+      showQuestion()
+    }else{
+      resultDisplay()
+    }
+})
+restartBtn.addEventListener("click", () => {
+  score = 0
+  currentQuesIndex = 0
+  resultContainer.classList.add("hidden")
+  // quesContainer.classList.remove("hidden")
+  startQuiz()
+})
 
  function startQuiz(){
     startBtn.classList.add("hidden")
@@ -47,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
  }
  function showQuestion(){
     nextBtn.classList.add("hidden")
-    quesText.textContent = ques[currentQuesIndex].ques
+    quesText.textContent = ques[currentQuesIndex].question
     choiceList.innerHTML = ''//clear previous choices
     ques[currentQuesIndex].choices.forEach(choice => {
         const li = document.createElement("li")
@@ -59,11 +75,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
  }
-//  function selectAnswer(choice){
-//     const correctAnswer = ques[currentQuesIndex].answer  
-//     if(choice ===){
 
-//       }
-//  }
+ function selectAnswer(choice){
+    const correctAnswer = ques[currentQuesIndex].answer  
+    if(choice === correctAnswer){
+        score += 1;
+      }
+      nextBtn.classList.remove("hidden")
+ }
 
+ function resultDisplay(){
+    quesContainer.classList.add("hidden")
+    resultContainer.classList.remove("hidden")
+    scoreDisplay.textContent = `${score} out of ${ques.length}`
+ }
 })
