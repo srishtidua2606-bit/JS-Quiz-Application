@@ -16,13 +16,14 @@ body {
 }
 
 .container {
-  width: 400px;
-  padding: 20px;
-  background-color: #1e1e1e;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  text-align: center;
+    width: 40vw;
+    padding: 20px;
+    background-color: #6c99cf;
+    border-radius: 10px;
+    box-shadow: 5px 7px 15px rgb(240 231 241 / 46%);
+    text-align: center;
 }
+
 
 h1,
 h2 {
@@ -44,21 +45,26 @@ li {
 }
 
 li:hover {
-  background-color: #6200ea;
+  background-color: #ffffff;
+  color:#121212
 }
 
 button {
-  padding: 10px;
-  background-color: #6200ea;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s;
+    padding: 10px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    color: #000000;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
 }
 
+
 button:hover {
-  background-color: #3700b3;
+  background-color: rgb(211, 10, 10);
+  color: white
+  
 }
 
 .hidden {
