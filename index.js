@@ -37,10 +37,12 @@ document.addEventListener('DOMContentLoaded', function() {
  ]
  let currentQuesIndex = 0;
  let score = 0;
+ let hasAnswered = false; 
 
  startBtn.addEventListener("click", startQuiz)
  nextBtn.addEventListener("click",()=>{
     currentQuesIndex++;
+    hasAnswered = false; // Reset flag for the next question
     if(currentQuesIndex < ques.length){
       showQuestion()
     }else{
@@ -50,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 restartBtn.addEventListener("click", () => {
   score = 0
   currentQuesIndex = 0
+  hasAnswered = false; // Reset flag on restart
   resultContainer.classList.add("hidden")
   // quesContainer.classList.remove("hidden")
   startQuiz()
@@ -77,11 +80,17 @@ restartBtn.addEventListener("click", () => {
  }
 
  function selectAnswer(choice){
+    
+    if (hasAnswered) return; 
+    
+    hasAnswered = true;
+    
     const correctAnswer = ques[currentQuesIndex].answer  
+    nextBtn.classList.remove("hidden")
     if(choice === correctAnswer){
         score += 1;
       }
-      nextBtn.classList.remove("hidden")
+      
  }
 
  function resultDisplay(){
